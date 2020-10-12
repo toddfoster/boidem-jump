@@ -1,0 +1,20 @@
+#+TITLE boidem-jump
+
+** What
+Facilitate rapid navigation through a potentially complex org document. Begin by offering one-key access to all top-level headings. If the selected heading has sub-headings, recurse into it and start again.
+
+** How?
+Sorry no convenient MELPA package. Yet another thing to learn. For now, arrange for this code to be executed and optionally bind it to a convenient key.
+
+** Why
+Scratching several itches at once:
+- to navigate more conveniently through complex org documents
+- to learn more emacs
+- to start learning elisp
+- sinister laughter as I write code that writes code
+
+** Welcome
+I welcome comments and pull-requests.
+
+** License
+[[https://www.gnu.org/licenses/gpl-3.0.html][GPLv3]]
