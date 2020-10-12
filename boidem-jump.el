@@ -57,13 +57,14 @@ Reg-ex's begin to choke on special characters, such as in embedded links. When j
 
 
 (defun boidem-jump-another-letter (chars)
-"Find a letter not already contained in CHARS.
+  "Find a letter not already contained in CHARS.
 
 CHARS is a list of *lowercase* characters. Start searching from z and go backwards."
-  (catch 'found
-      (dotimes (i 26)
-        (let ((letter (- ?z i)))
-          (unless (member letter chars) (throw 'found letter))))))
+  (let ((found) (letter ?z))
+    (while (and (> letter ?a) (member letter chars))
+      (setq letter (1- letter)))
+    (if (member letter chars)
+	?- letter)))
 
 
 (defun boidem-letterp (char)
@@ -75,12 +76,12 @@ CHARS is a list of *lowercase* characters. Start searching from z and go backwar
 "Find the first letter in HEADING that isn't already listed in CHARS.
 
 Convert upper-case letters to lower-case."
-    (let ((candidate (downcase (string-to-char heading))))
+(let ((candidate (downcase (string-to-char heading))))
       (if
         (or
           (not (boidem-letterp candidate))
           (member candidate chars))
-        (if (> (length heading) 1)
+        (if (> (length heading) 0)
 	    (boidem-jump-unique-letter (substring heading 1) chars)
 	    (boidem-jump-another-letter chars))
         candidate)))
